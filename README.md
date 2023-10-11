@@ -2,8 +2,8 @@
 
 ### Get Leaderboard scores
 
-HTTP Verb: **GET**
-URL: `/scores`
+HTTP Verb: **GET**  
+URL: `/scores`  
 Query Params: `game` - a string of the game to retrieve scores for
 
 #### Request example
@@ -59,8 +59,8 @@ Error:
 
 ### Store new score
 
-HTTP Verb: **POST**
-URL: `/score`
+HTTP Verb: **POST**  
+URL: `/score`  
 JSON Body data (all properties required):
 ```json
 {
