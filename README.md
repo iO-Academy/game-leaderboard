@@ -1,38 +1,110 @@
-# Slim Framework 4 Skeleton Application
+# API Docs
 
-Use this skeleton application to quickly setup and start working on a new Slim Framework 4 application. This application uses the latest Slim 4 with Slim PSR-7 implementation and PHP-DI container implementation along with the PHP-View template renderer. It also uses the Monolog logger.
+### Get Leaderboard scores
 
-This skeleton application was built for Composer. This makes setting up a new Slim Framework application quick and easy.
+HTTP Verb: **GET**
+URL: `/scores`
+Query Params: `game` - a string of the game to retrieve scores for
 
-## Install the Application
+#### Request example
+`/scores?game=pairs`
 
-Create a new directory with your project name, e.g:
+#### Responses
 
-
-```bash
-mkdir academyProject
+**Success:**
+```json
+{
+    "success": true,
+    "data": [
+        {
+            "id": 1,
+            "game": "pairs",
+            "name": "Mike",
+            "score": "100",
+            "created": "2023-10-11 14:56:54"
+        }
+    ],
+    "message": "Data found."
+}
 ```
 
-Once inside the new directory, clone this repo:
+**Failures:**
 
-```bash
-git clone git@github.com:Mayden-Academy/slim4-skeleton.git .
+Invalid `game` string:
+```json
+{
+    "success": false,
+    "data": [],
+    "message": "No data found for game: does not exist"
+}
 ```
 
-One cloned, you must install the slim components by running:
-
-```bash
-composer install
+Missing `game` param:
+```json
+{
+  "success": false,
+  "data": [],
+  "message": "Invalid request data"
+}
 ```
 
-To run the application locally:
-```bash
-composer start
-
+Error:
+```json
+{
+    "success": false,
+    "data": [],
+    "message": "Unexpected Error Occurred"
+}
 ```
-Run this command in the application directory to run the test suite
-```bash
-composer test
+
+### Store new score
+
+HTTP Verb: **POST**
+URL: `/score`
+JSON Body data (all properties required):
+```json
+{
+    "game": "string",
+    "name": "string",
+    "score": 100
+}
 ```
 
-That's it! Now go build something cool.
+#### Request example
+`/score`
+
+#### Responses
+
+**Success:**
+```json
+{
+  "success": true,
+  "message": "Score stored"
+}
+```
+
+**Failures:**
+
+Cannot store score (for unknown reason):
+```json
+{
+  "success": false,
+  "message": "Unable to store score"
+}
+```
+
+Invalid `POST` data:
+```json
+{
+  "success": false,
+  "message": "Invalid post data"
+}
+```
+
+Error:
+```json
+{
+    "success": false,
+    "message": "Unexpected Error Occurred"
+}
+```
