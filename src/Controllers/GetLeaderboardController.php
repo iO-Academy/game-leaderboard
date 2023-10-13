@@ -23,7 +23,7 @@ class GetLeaderboardController
             if (is_string($game) && !empty($game)) {
                 $leaderboard = $this->model->getLeaderboard($game);
                 if (!empty($leaderboard)) {
-                    return $response->withJson(['success' => true, 'data' => $leaderboard, 'message' => 'Data found.']);
+                    return $response->withJson(['success' => true, 'data' => $leaderboard, 'message' => 'Data found']);
                 } else {
                     return $response->withJson(['success' => false, 'data' => [], 'message' => 'No data found for game: ' . $game], 400);
                 }

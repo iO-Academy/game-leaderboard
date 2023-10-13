@@ -24,4 +24,11 @@ class LeadboardModel
         return $query->execute($score);
     }
 
+    public function getAllGames(): array
+    {
+        $query = $this->db->prepare('SELECT DISTINCT `game` FROM `leaderboard`');
+        $query->execute();
+        return $query->fetchAll(\PDO::FETCH_COLUMN, 0);
+    }
+
 }

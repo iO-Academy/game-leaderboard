@@ -108,3 +108,46 @@ Error:
     "message": "Unexpected Error Occurred"
 }
 ```
+
+### Get list of existing games
+
+HTTP Verb: **GET**  
+URL: `/games`
+
+#### Request example
+`/games`
+
+#### Responses
+
+**Success:**
+```json
+{
+  "success": true,
+  "data": {
+    "games": [
+      "pairs",
+      "battleships",
+      "Wordle"
+    ]
+  },
+  "message": "Data found"
+}
+```
+
+Missing game data:
+```json
+{
+    "success": false,
+    "message": "No games found"
+}
+```
+
+**Failures:**
+
+Error:
+```json
+{
+    "success": false,
+    "message": "Unexpected Error Occurred"
+}
+```
