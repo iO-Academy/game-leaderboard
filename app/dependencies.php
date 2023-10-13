@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 use App\Factories\LoggerFactory;
-use App\Factories\PDOFactory;
+use App\Factories\PdoFactory;
 use App\Factories\RendererFactory;
 use DI\ContainerBuilder;
 use Psr\Log\LoggerInterface;
@@ -13,6 +13,6 @@ return function (ContainerBuilder $containerBuilder) {
 
     $container[LoggerInterface::class] = DI\factory(LoggerFactory::class);
     $container[PhpRenderer::class] = DI\factory(RendererFactory::class);
-    $container[PDO::class] = DI\factory(PDOFactory::class);
+    $container[PDO::class] = DI\factory(PdoFactory::class);
     $containerBuilder->addDefinitions($container);
 };
